@@ -1,13 +1,11 @@
 import React from 'react';
 import GamesList from './GamesList';
 import {connect} from 'react-redux';
-import {fetchGames} from './actions.js';
+import {fetchGames} from './actions';
 
 class GamesPage extends React.Component {
     componentDidMount() {
-        this
-            .props
-            .fetchGames();
+        this.props.fetchGames();
     }
     render() {
         return (
