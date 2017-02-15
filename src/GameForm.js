@@ -32,7 +32,7 @@ class GameForm extends React.Component {
                         id="cover"/>
                 </div>
                 <div className="field">
-                {this.state.cover!==''  &&  <img src={this.state.cover} alt="cover" className="ui small bordered"/>}
+                {this.state.cover!==''  &&  <img src={this.state.cover} alt="cover" className="ui small bordered image"/>}
 
                 </div>
                 <div className="field">
