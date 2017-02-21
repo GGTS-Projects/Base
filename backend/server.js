@@ -11,7 +11,13 @@ mongodb.MongoClient.connect(dburl, function (err, db) {
         res.json({games});
     });
  });
-
+app.use((req,res)=>{
+res.status(404).json({
+  errors:{
+    global:"Something went wrong"
+  }
+});
+})
 app.get('/', function (req, res) {
   res.send('Hello World');
 });
