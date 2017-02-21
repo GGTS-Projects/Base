@@ -5,20 +5,23 @@ class GameForm extends React.Component {
     state = {
         title: '',
         cover: '',
-        errors: {}
+        errors: {},
+        loading:false
     }
 
     handleChange = (e) => {
-        if(!!this.state.errors[e.target.name]){
+        if (!!this.state.errors[e.target.name]) {
 
-        let errors = Object.assign({}, this.state.errors);
-        delete errors[e.target.name];
-        this.setState({
-            [e.target.name]: e.target.value,
-            errors
-        });
-    } else{
-            this.setState({[e.target.name]:e.target.value})
+            let errors = Object.assign({}, this.state.errors);
+            delete errors[e.target.name];
+            this.setState({
+                [e.target.name]: e.target.value,
+                errors
+            });
+        } else {
+            this.setState({
+                [e.target.name]: e.target.value
+            })
         }
     }
     handleSubmit = (e) => {
@@ -31,10 +34,16 @@ class GameForm extends React.Component {
         if (this.state.cover === '') 
             errors.cover = "Can't be empty";
         this.setState({errors});
+        const isValid = Object.keys(errors).length === 0;
+        if (isValid) {
+            const {title, cover} = this.state;
+            this.setState({loading:true});
+           // this.props.saveGame({title, cover});
+        }
     }
     render() {
         return (
-            <form className="ui form" onSubmit={this.handleSubmit}>
+            <form className={classnames('ui', 'form',{loading:this.state.loading})} onSubmit={this.handleSubmit}>
                 <h1>Add New Games</h1>
                 <div
                     className={classnames('field', {
