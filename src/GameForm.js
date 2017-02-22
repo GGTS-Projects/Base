@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router';
 import {saveGame} from './actions'
 
 class GameForm extends React.Component {
@@ -8,9 +9,9 @@ class GameForm extends React.Component {
         title: '',
         cover: '',
         errors: {},
-        loading:false
+        loading:false,
+        done:false
     }
-
     handleChange = (e) => {
         if (!!this.state.errors[e.target.name]) {
 
@@ -41,14 +42,13 @@ class GameForm extends React.Component {
             const {title, cover} = this.state;
             this.setState({loading:true});
            this.props.saveGame({title, cover}).then(
-               ()=>{},
+               ()=>{this.setState({done:true})},
                (err)=>err.response.json().then(({errors}) => this.setState({errors,loading:false}))
            );
         }
     }
     render() {
-        return (
-            <form className={classnames('ui', 'form',{loading:this.state.loading})} onSubmit={this.handleSubmit}>
+        const form=( <form className={classnames('ui', 'form',{loading:this.state.loading})} onSubmit={this.handleSubmit}>
                 <h1>Add New Games</h1>
               {!!this.state.errors.global &&<div className="ui negative message"><p>{this.state.errors.global}</p> </div>}
                 <div
@@ -84,7 +84,11 @@ class GameForm extends React.Component {
                     <button className="ui primary button">Save</button>
 
                 </div>
-            </form>
+            </form>);
+        return (
+           <div>
+               {this.state.done ? <Redirect to="/games"/> :form}
+           </div>
         );
     }
 }
