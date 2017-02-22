@@ -1,12 +1,14 @@
-import React from 'react'
-
+import React from 'react';
+import GameCard from './GameCard';
 export default function GamesList({games})  {
     const emptyMessage = (
         <p>There are no games yet in your List</p>
     );
 
     const gamesList = (
-        <p>games list</p>
+     <div className="ui four cards">
+         {games.map(game=><GameCard game={game} key={game._id}/>)}
+     </div>         
     );
 
     return (
