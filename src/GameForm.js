@@ -5,13 +5,22 @@ import {Redirect} from 'react-router';
 import {saveGame} from './actions'
 
 class GameForm extends React.Component {
+
     state = {
-        title: '',
-        cover: '',
+        _id: this.props.game ? this.props.game._id : null,
+        title: this.props.game ? this.props.game.title :'',
+        cover: this.props.game ? this.props.game.cover :'',
         errors: {},
         loading:false,
         done:false
     }
+
+    componentDidMount(){
+        if(this.props.params._id){
+            this.props.fetchGame(this.props.params._id);
+        }
+    }
+
     handleChange = (e) => {
         if (!!this.state.errors[e.target.name]) {
 
@@ -27,6 +36,7 @@ class GameForm extends React.Component {
             })
         }
     }
+
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -47,6 +57,7 @@ class GameForm extends React.Component {
            );
         }
     }
+
     render() {
         const form=( <form className={classnames('ui', 'form',{loading:this.state.loading})} onSubmit={this.handleSubmit}>
                 <h1>Add New Games</h1>
@@ -93,4 +104,13 @@ class GameForm extends React.Component {
     }
 }
 
-export default connect(null,{saveGame})(GameForm);
+function mapStateToProps(state, props) {
+    if(props.params._id){
+    return {
+        game: state.games.find(item => item._id === props.params._id)
+    }
+}
+return {game:null};
+}
+
+export default connect(mapStateToProps,{saveGame})(GameForm);

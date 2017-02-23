@@ -18,6 +18,7 @@ class App extends Component {
 
         <Match exactly pattern="/games" component={GamesPage}/>
          <Match pattern="/games/new" component={GamesForm}/>
+         <Match pattern="/game/:_id" component={GamesForm}/>
       </div>
     );
   }
