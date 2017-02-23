@@ -50,6 +50,13 @@ mongodb.MongoClient.connect(dburl, function (err, db) {
           }
         });
     })
+
+    app.get('/api/games/:_id', function (req, res) {
+     db.collection('games').findOne({_id: new mongodb.ObjectID(req.params._id)},(err,game)=>{
+       res.json({game});
+     })
+    });
+
     app.get('/', function (req, res) {
       res.send('Hello World');
     });

@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router';
-import {saveGame} from './actions'
+import {saveGame ,fetchGame} from './actions'
 
 class GameForm extends React.Component {
 
@@ -14,7 +14,13 @@ class GameForm extends React.Component {
         loading:false,
         done:false
     }
-
+componentWillReceivedProps=(nextProps)=>{
+this.setState({
+    _id:nextProps.game._id,
+    title:nextProps.game.title,
+    cover:nextProps.game.cover
+});
+}
     componentDidMount(){
         if(this.props.params._id){
             this.props.fetchGame(this.props.params._id);
@@ -113,4 +119,4 @@ function mapStateToProps(state, props) {
 return {game:null};
 }
 
-export default connect(mapStateToProps,{saveGame})(GameForm);
+export default connect(mapStateToProps,{saveGame,fetchGame})(GameForm);

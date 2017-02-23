@@ -1,5 +1,6 @@
 export const SET_GAMES='SET_GAMES';
 export const ADD_GAME='ADD_GAME';
+export const GAME_FETCHED='GAME_FETCHED';
 
 export function setGames(games){
     return{
@@ -22,7 +23,15 @@ export function addGame(game){
         type:ADD_GAME,
         game
     }
+};
+
+export function gameFetched(game){
+    return{
+        type:GAME_FETCHED,
+        game
+    }
 }
+
 export function saveGame(data){
     return dispatch=>{
         return fetch('/api/games',{
@@ -34,11 +43,18 @@ export function saveGame(data){
         }).then(handleResponse)
         .then(data=>dispatch(addGame(data.game)));
     }
-}
+};
 export function fetchGames() {
     return dispatch => {
         fetch('/api/games')
         .then(res=>res.json())
         .then(data => dispatch(setGames(data.games)));
     }
-}
+};
+export function fetchGame(id) {
+    return dispatch => {
+        fetch('/api/games/',{id:id})
+        .then(res=>res.json())
+        .then(data => dispatch(gameFetched(data.game)));
+    }
+};
