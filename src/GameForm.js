@@ -14,14 +14,14 @@ class GameForm extends React.Component {
         loading:false,
         done:false
     }
-componentWillReceivedProps=(nextProps)=>{
+componentWillReceiveProps=(nextProps)=>{
 this.setState({
     _id:nextProps.game._id,
     title:nextProps.game.title,
     cover:nextProps.game.cover
 });
 }
-    componentDidMount(){
+    componentDidMount=()=>{
         if(this.props.params._id){
             this.props.fetchGame(this.props.params._id);
         }
@@ -111,12 +111,13 @@ this.setState({
 }
 
 function mapStateToProps(state, props) {
-    if(props.params._id){
+  if (props.params._id) {
     return {
-        game: state.games.find(item => item._id === props.params._id)
+      game: state.games.find(item => item._id === props.params._id)
     }
-}
-return {game:null};
+  }
+
+  return { game: null };
 }
 
 export default connect(mapStateToProps,{saveGame,fetchGame})(GameForm);

@@ -53,7 +53,7 @@ export function fetchGames() {
 };
 export function fetchGame(id) {
     return dispatch => {
-        fetch('/api/games/',{id:id})
+        fetch(`/api/games/${id}`)
         .then(res=>res.json())
         .then(data => dispatch(gameFetched(data.game)));
     }
