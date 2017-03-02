@@ -12,13 +12,14 @@ class GameForm extends React.Component {
         loading:false
        
     }
-componentWillReceiveProps=(nextProps)=>{
-this.setState({
-    _id:nextProps.game._id,
-    title:nextProps.game.title,
-    cover:nextProps.game.cover
-});
-}
+    
+    componentWillReceiveProps=(nextProps)=>{
+        this.setState({
+            _id:nextProps.game._id,
+            title:nextProps.game.title,
+            cover:nextProps.game.cover
+        });
+    }
     
 
     handleChange = (e) => {

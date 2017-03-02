@@ -40,6 +40,12 @@ export function gameUpdated(game){
         game
     }
 }
+export function gameDeleted(gameId){
+    return{
+        type:GAME_DELETED,
+        gameId
+    }
+}
 
 export function saveGame(data){
     return dispatch=>{
@@ -63,6 +69,17 @@ export function updateGame(data) {
       }
     }).then(handleResponse)
     .then(data => dispatch(gameUpdated(data.game)));
+  }
+}
+export function deleteGame(id) {
+  return dispatch => {
+    return fetch(`/api/games/${id}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(handleResponse)
+    .then(data => dispatch(gameDeleted(id)));
   }
 }
 export function fetchGames() {
