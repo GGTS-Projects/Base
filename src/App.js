@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import GamesPage from './GamesPage';
-import GamesForm from './GameForm';
+import GamesFormPage from './GameFormPage';
 import './App.css';
 import {Link, Match} from 'react-router';
 
@@ -17,8 +17,8 @@ class App extends Component {
         </div>
 
         <Match exactly pattern="/games" component={GamesPage}/>
-         <Match pattern="/games/new" component={GamesForm}/>
-         <Match pattern="/game/:_id" component={GamesForm}/>
+         <Match pattern="/games/new" component={GamesFormPage}/>
+         <Match pattern="/game/:_id" component={GamesFormPage}/>
       </div>
     );
   }

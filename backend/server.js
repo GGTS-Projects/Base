@@ -1,6 +1,7 @@
 import express from 'express';
 import mongodb from 'mongodb';
 import bodyParser from 'body-parser';
+var ObjectId = require('mongodb').ObjectID;
 
 const app = express();
 app.use(bodyParser.json());
@@ -44,7 +45,7 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
     if (isValid) {
       const { title, cover } = req.body;
       db.collection('games').findOneAndUpdate(
-        { _id: new mongodb.ObjectId(req.params._id) },
+        { _id: ObjectId(req.params._id) },
         { $set: { title, cover } },
         { returnOriginal: false },
         (err, result) => {
