@@ -5,7 +5,7 @@ import { Link, IndexLink } from 'react-router';
 const Header=()=>(
 
 <div>
-<div className="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div className="nav navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div className="container">
    
             <div className="navbar-header">
