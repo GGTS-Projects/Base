@@ -15,13 +15,13 @@ const Header=()=>(
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="#">Start Bootstrap</a>
+                <Link className="navbar-brand" to="/">Yukoni Base</Link>
             </div>
           
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <Link to="/games">Products</Link>
                     </li>
                     <li>
                         <a href="#">Services</a>
