@@ -6,7 +6,7 @@ export default function GamesList({games,deleteGame})  {
     );
 
     const gamesList = (
-     <div className="ui four cards">
+     <div className="row text-center">
          {games.map(game => <GameCard game={game} key={game._id} deleteGame={deleteGame} />)}
      </div>         
     );

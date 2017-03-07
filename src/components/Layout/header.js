@@ -24,10 +24,10 @@ const Header=()=>(
                         <Link to="/games">Products</Link>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                       <Link to="/Contact">Contact</Link>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                       <Link to="/About">About</Link>
                     </li>
                 </ul>
             </div>

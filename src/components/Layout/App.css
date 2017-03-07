@@ -1,7 +1,10 @@
 .App {
   text-align: center;
+  padding-top: 70px;
 }
-
+body {
+    padding-top: 170px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;

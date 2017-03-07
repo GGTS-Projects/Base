@@ -1,27 +1,26 @@
 import React from 'react'
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 
-const GameCard = ({game,deleteGame}) => {
-    return(
-        <div className="ui card">
-            <div className="image">
-                <img src={game.cover} alt="Game Cover" />
+const GameCard = ({game, deleteGame}) => {
+    return (
+        <div className="col-md-3 col-sm-6 hero-feature">
+            <div className="thumbnail">
+                <img src={game.cover} alt="Game Cover"/>
             </div>
 
-            <div className="content">
-                <div className="header">{game.title}</div>
+            <div className="caption">
+                <h3 className="header">{game.title}</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
-            <div className="extra content">
-                <div className="ui two buttons">
-                    <Link to={'/game/'+game._id} className="ui basic button green">Edit</Link>
-                    <div className="ui basic button red" onClick={()=>deleteGame(game._id)}>Delete</div>
-                </div>
-            </div>
+            <p>
+                <Link to={'/game/' + game._id} className="btn btn-primary">Edit</Link>
+                <div className="btn btn-default" onClick={() => deleteGame(game._id)}>Delete</div>
+            </p>
         </div>
     )
 }
-GameCard.propTypes={
-    game:React.PropTypes.object.isRequired,
-    deleteGame:React.PropTypes.func.isRequired
+GameCard.propTypes = {
+    game: React.PropTypes.object.isRequired,
+    deleteGame: React.PropTypes.func.isRequired
 }
 export default GameCard;
